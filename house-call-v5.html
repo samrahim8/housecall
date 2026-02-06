@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Call — Sam Rahim</title>
+    <meta name="description" content="AI systems for your business. Built in a day. $1,500.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="House Call — Sam Rahim">
+    <meta property="og:description" content="AI systems for your business. Built in a day. $1,500.">
+    <meta property="og:image" content="og-image.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="House Call — Sam Rahim">
+    <meta name="twitter:description" content="AI systems for your business. Built in a day. $1,500.">
+    <meta name="twitter:image" content="og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Hybrid palette: warm base + professional accents */
+            --ivory: #FAF7F2;
+            --cream: #F5F0E6;
+            --walnut: #3B2F2A;
+            --walnut-mid: #5C4B44;
+            --walnut-light: #7A6D66;
+            --forest: #2D4A3E;
+            --forest-light: #3D6354;
+            --brass: #B8963E;
+            --brass-light: #D4B05C;
+            --border: #DDD5C8;
+            --border-dark: #C4B8A8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            color: var(--walnut);
+            background-color: var(--ivory);
+            font-size: 17px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle paper texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.035;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes strokeDraw {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .animate { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .animate-d1 { animation-delay: 0.1s; }
+        .animate-d2 { animation-delay: 0.2s; }
+        .animate-d3 { animation-delay: 0.35s; }
+        .animate-d4 { animation-delay: 0.5s; }
+        .animate-d5 { animation-delay: 0.65s; }
+
+        /* ——— NAV ——— */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 18px 48px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        nav.scrolled {
+            border-bottom-color: var(--border);
+            box-shadow: 0 2px 20px rgba(59, 47, 42, 0.04);
+        }
+        .nav-mark {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            color: var(--walnut);
+            letter-spacing: -0.01em;
+        }
+        .nav-cta {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ivory);
+            background: var(--forest);
+            text-decoration: none;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+            letter-spacing: 0.01em;
+        }
+        .nav-cta:hover {
+            background: var(--forest-light);
+        }
+
+        /* ——— LAYOUT ——— */
+        .container { max-width: 680px; margin: 0 auto; padding: 0 32px; }
+
+        /* ——— INK STROKE DIVIDERS ——— */
+        .ink-stroke {
+            height: 2px;
+            margin: 64px 0;
+            background: var(--walnut);
+            border: none;
+            border-radius: 1px;
+            transform-origin: left center;
+            opacity: 0.1;
+            position: relative;
+        }
+        .ink-stroke::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--ivory));
+        }
+
+        /* ——— HERO ——— */
+        .hero { padding: 160px 0 72px; }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--forest);
+            margin-bottom: 32px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background: var(--forest);
+        }
+
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(42px, 6.5vw, 64px);
+            line-height: 1.08;
+            font-weight: 400;
+            color: var(--walnut);
+            letter-spacing: -0.025em;
+            margin-bottom: 32px;
+        }
+        h1 em {
+            font-style: italic;
+            color: var(--forest);
+        }
+
+        .hero-body {
+            font-size: 18px;
+            line-height: 1.75;
+            color: var(--walnut-mid);
+            max-width: 520px;
+            margin-bottom: 40px;
+        }
+
+        /* ——— BUTTONS ——— */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ivory);
+            background: var(--forest);
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.01em;
+        }
+        .btn-primary:hover {
+            background: var(--forest-light);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px rgba(45, 74, 62, 0.2);
+        }
+        .btn-primary svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.25s ease;
+            stroke: currentColor;
+        }
+        .btn-primary:hover svg { transform: translateX(3px); }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--walnut-light);
+            text-decoration: none;
+            margin-top: 16px;
+            transition: color 0.25s ease;
+        }
+        .btn-ghost:hover { color: var(--forest); }
+
+        .btn-note {
+            display: block;
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--walnut-light);
+        }
+
+        /* ——— SECTIONS ——— */
+        section { padding: 16px 0; }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brass);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 18px;
+            height: 1.5px;
+            background: var(--brass);
+        }
+
+        h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(28px, 4.5vw, 40px);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--walnut);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        p { color: var(--walnut-mid); margin-bottom: 20px; }
+        p:last-child { margin-bottom: 0; }
+        p em { color: var(--walnut); font-style: italic; }
+
+        /* ——— STEP CARDS ——— */
+        .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+
+        .step {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 28px 32px;
+            position: relative;
+            border: 1px solid var(--border);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+        .step:hover {
+            border-color: var(--border-dark);
+            transform: translateY(-2px);
+        }
+
+        .step-head {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        .step-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 14px;
+            color: var(--brass);
+            letter-spacing: 0.01em;
+        }
+        .step h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--walnut);
+        }
+        .step p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--walnut-mid);
+            margin: 0;
+        }
+
+        /* ——— PULL QUOTE ——— */
+        .pull-quote {
+            margin: 48px 0;
+            padding: 36px;
+            background: var(--cream);
+            border-radius: 8px;
+            border-left: 3px solid var(--brass);
+        }
+        .pull-quote blockquote {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(20px, 2.5vw, 26px);
+            line-height: 1.45;
+            color: var(--walnut);
+            font-style: italic;
+        }
+        .pull-quote .attr {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 13px;
+            font-style: normal;
+            color: var(--walnut-light);
+            margin-top: 16px;
+        }
+
+        /* ——— WHO GRID ——— */
+        .for-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .for-item {
+            padding: 20px 22px;
+            background: var(--cream);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--walnut-mid);
+            border: 1px solid var(--border);
+            transition: border-color 0.25s ease;
+        }
+        .for-item:hover { border-color: var(--border-dark); }
+        .for-item strong {
+            display: block;
+            font-family: 'Instrument Serif', serif;
+            color: var(--walnut);
+            font-weight: 400;
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+
+        /* ——— PRICING ——— */
+        .pricing-card {
+            background: var(--walnut);
+            color: var(--ivory);
+            border-radius: 10px;
+            padding: 48px;
+            margin-top: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Warm brass glow */
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(184, 150, 62, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .pricing-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 26px;
+            font-weight: 400;
+            color: var(--ivory);
+            margin-bottom: 12px;
+        }
+        .pricing-card .price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 56px;
+            color: var(--brass-light);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .pricing-card .price-note {
+            font-size: 14px;
+            color: rgba(250, 247, 242, 0.5);
+            margin-bottom: 28px;
+        }
+        .pricing-card .includes { list-style: none; padding: 0; }
+        .pricing-card .includes li {
+            padding: 10px 0;
+            border-top: 1px solid rgba(250, 247, 242, 0.1);
+            font-size: 15px;
+            color: rgba(250, 247, 242, 0.8);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .pricing-card .includes li::before {
+            content: '—';
+            color: var(--brass-light);
+            flex-shrink: 0;
+        }
+        .pricing-ongoing {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(250, 247, 242, 0.1);
+        }
+        .pricing-ongoing p {
+            font-size: 14px;
+            color: rgba(250, 247, 242, 0.5);
+            margin: 0;
+        }
+        .pricing-ongoing span { color: var(--brass-light); font-weight: 500; }
+
+        .pricing-cta { margin-top: 32px; position: relative; z-index: 1; }
+        .pricing-cta .btn-primary {
+            background: var(--brass);
+            color: var(--walnut);
+        }
+        .pricing-cta .btn-primary:hover {
+            background: var(--brass-light);
+            box-shadow: 0 10px 28px rgba(184, 150, 62, 0.3);
+        }
+        .pricing-cta .btn-note { color: rgba(250, 247, 242, 0.4); }
+        .pricing-cta .btn-ghost {
+            color: rgba(250, 247, 242, 0.5);
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        .pricing-cta .btn-ghost:hover { color: rgba(250, 247, 242, 0.7); }
+
+        /* ——— ABOUT ——— */
+        .about-flex {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            margin-top: 24px;
+        }
+        .about-marker {
+            width: 64px;
+            height: 64px;
+            min-width: 64px;
+            background: var(--forest);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            color: var(--ivory);
+        }
+        .about-text p { font-size: 16px; }
+        .about-text a {
+            color: var(--forest);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease;
+        }
+        .about-text a:hover { color: var(--forest-light); }
+
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .credential {
+            font-size: 13px;
+            padding: 6px 14px;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--walnut-mid);
+            white-space: nowrap;
+        }
+
+        /* ——— MODAL ——— */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(59, 47, 42, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal {
+            background: var(--ivory);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 420px;
+            width: 90%;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--walnut-light);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close:hover { color: var(--walnut); }
+        .modal h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 26px;
+            color: var(--walnut);
+            margin-bottom: 8px;
+        }
+        .modal p {
+            font-size: 15px;
+            color: var(--walnut-mid);
+            margin-bottom: 24px;
+        }
+        .modal-form input,
+        .modal-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 15px;
+            color: var(--walnut);
+            background: var(--cream);
+            margin-bottom: 12px;
+            transition: border-color 0.2s ease;
+        }
+        .modal-form input:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--forest);
+        }
+        .modal-form input::placeholder,
+        .modal-form textarea::placeholder {
+            color: var(--walnut-light);
+        }
+        .modal-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .modal-form .btn-primary {
+            width: 100%;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        /* ——— FOOTER ——— */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        footer p { font-size: 13px; color: var(--walnut-light); }
+        footer a { color: var(--walnut); text-decoration: none; }
+        footer a:hover { color: var(--forest); }
+
+        /* ——— RESPONSIVE ——— */
+        @media (max-width: 640px) {
+            nav { padding: 14px 20px; }
+            .container { padding: 0 20px; }
+            .hero { padding: 120px 0 56px; }
+            .hero-eyebrow { padding: 6px 12px; font-size: 11px; }
+            .for-grid { grid-template-columns: 1fr; }
+            .pricing-card { padding: 32px 24px; }
+            .pricing-card .price { font-size: 44px; }
+            .about-flex { flex-direction: column; gap: 16px; }
+            .ink-stroke { margin: 48px 0; }
+            .step { padding: 22px 24px; }
+        }
+
+        /* Respect user's motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .animate { opacity: 1; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="nav">
+        <div class="nav-mark">House Call</div>
+        <a href="#book" class="nav-cta">Book Now</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-eyebrow animate animate-d1">Now booking in Orlando</div>
+            <h1 class="animate animate-d2">You already know<br>you should be<br><em>using AI.</em></h1>
+            <p class="hero-body animate animate-d3">But you don't know where to start. I do. I spend a day with you, learn how your business actually runs, and build the systems that make sense. Working tools by the time I leave.</p>
+            <div class="animate animate-d4">
+                <a href="#book" class="btn-primary">
+                    Get Started
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <span class="btn-note">$1,500. One day. Working systems when I leave.</span>
+            </div>
+        </section>
+
+        <hr class="ink-stroke animate animate-d5">
+
+        <!-- THE SITUATION -->
+        <section>
+            <div class="section-label">The situation</div>
+            <h2>You've been meaning<br>to figure this out.</h2>
+            <p>You've probably tried ChatGPT. Maybe it helped, maybe it felt like a gimmick. Either way, it's not part of how you actually work day-to-day.</p>
+            <p>The problem isn't that you don't get it — it's that you're running a business. You don't have a spare weekend to figure out which tools matter and how to make them stick.</p>
+            <p>I use AI to run my own businesses every day. I'll show you exactly what I use and how I use it.</p>
+        </section>
+
+        <hr class="ink-stroke">
+
+        <!-- HOW IT WORKS -->
+        <section>
+            <div class="section-label">How it works</div>
+            <h2>One day. Four things.</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-num">01</span>
+                        <h3>The Intake</h3>
+                    </div>
+                    <p>I break down the landscape — what tools exist, what they're actually good at, and what's worth your time. You'll understand the capabilities so you can make your own decisions going forward, not just take my word for it.</p>
+                </div>
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-num">02</span>
+                        <h3>The Diagnosis</h3>
+                    </div>
+                    <p>We walk through your day together. Where's your time going? What's repetitive, what's manual, what's just annoying? I find the 3–5 spots where AI actually helps.</p>
+                </div>
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-num">03</span>
+                        <h3>The Prescription</h3>
+                    </div>
+                    <p>I build you the same kinds of systems I use to run my own companies. Content, client communication, operations, research — whatever moves the needle most. Working tools by the end of the day.</p>
+                </div>
+                <div class="step">
+                    <div class="step-head">
+                        <span class="step-num">04</span>
+                        <h3>The Handoff</h3>
+                    </div>
+                    <p>I teach you how it all works so you can run it yourself. You get a written guide too, so nothing gets lost after I leave.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="ink-stroke">
+
+        <!-- WHO THIS IS FOR -->
+        <section>
+            <div class="section-label">Who this is for</div>
+            <h2>Busy people who don't have<br>the time to keep up.</h2>
+
+            <div class="for-grid">
+                <div class="for-item">
+                    <strong>Practice owners</strong>
+                    Dentists, physicians, med spas
+                </div>
+                <div class="for-item">
+                    <strong>Real estate</strong>
+                    Agents, brokerages, property managers
+                </div>
+                <div class="for-item">
+                    <strong>Service businesses</strong>
+                    Agencies, law firms, consultants
+                </div>
+                <div class="for-item">
+                    <strong>Founders</strong>
+                    Anyone building something
+                </div>
+            </div>
+        </section>
+
+        <hr class="ink-stroke">
+
+        <!-- PRICING -->
+        <section id="book">
+            <div class="section-label">Investment</div>
+            <h2>You already know<br>you need this.</h2>
+
+            <div class="pricing-card">
+                <h3>The House Call</h3>
+                <div class="price">$1,500</div>
+                <div class="price-note">One day, in person or virtual</div>
+                <ul class="includes">
+                    <li>30-minute discovery call beforehand</li>
+                    <li>AI briefing tailored to your industry</li>
+                    <li>Full workflow diagnosis</li>
+                    <li>2–3 custom systems, built and working</li>
+                    <li>Hands-on training so you can run it yourself</li>
+                    <li>Written guide for reference</li>
+                </ul>
+                <div class="pricing-ongoing">
+                    <p>If you want ongoing support after, that starts at <span>$300/month</span>. Totally optional.</p>
+                </div>
+                <div class="pricing-cta">
+                    <a href="#" class="btn-primary">
+                        Book Your House Call
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <span class="btn-note">You'll fill out a short intake form after booking.</span>
+                    <a href="#" class="btn-ghost" id="questions-link">Questions?</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section>
+            <div class="section-label">Who you're working with</div>
+            <h2>Sam Rahim</h2>
+            <div class="about-flex">
+                <div class="about-marker">SR</div>
+                <div class="about-text">
+                    <p>I run <a href="https://samrahim.com" target="_blank">SR Ventures</a> — a portfolio of businesses that use AI every single day to operate. I spend a lot of time in the AI community online, tinkering with new tools as they come out. Everything I'll build for you comes from what I actually use — not what I read about.</p>
+                    <p>I started my career at Disney. Since then, I've worked for several high-growth startups, including Street FC — where I was the first employee, and helped grow the business to millions in revenue.</p>
+                    <p>Based in Orlando.</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 80px;"></div>
+
+    </main>
+
+    <!-- Questions Modal -->
+    <div class="modal-overlay" id="questions-modal">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3>Quick question?</h3>
+            <p>Drop your info and I'll get back to you within 24 hours.</p>
+            <form class="modal-form" id="questions-form">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="question" placeholder="What's on your mind?" rows="3" required></textarea>
+                <button type="submit" class="btn-primary">
+                    Send
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>House Call. An <a href="https://www.samrahim.com">SR Studio</a> company.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Scroll-triggered reveals (skip if reduced motion)
+        if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '0';
+                        entry.target.style.animation = 'fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('section:not(.hero), .ink-stroke:not(.animate), .pull-quote, .steps .step').forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+
+            // Ink stroke draw animation on scroll
+            const strokeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transform = 'scaleX(0)';
+                        entry.target.style.transformOrigin = 'left center';
+                        entry.target.style.animation = 'strokeDraw 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+                        entry.target.style.opacity = '0.12';
+                        strokeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.ink-stroke:not(.animate)').forEach(el => {
+                strokeObserver.observe(el);
+            });
+        }
+
+        // Modal
+        const modal = document.getElementById('questions-modal');
+        const questionsLink = document.getElementById('questions-link');
+        const modalClose = document.getElementById('modal-close');
+
+        questionsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+</html>
