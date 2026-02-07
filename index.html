@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Call — Sam Rahim</title>
-    <meta name="description" content="AI systems for your business. Built in a day. $1,500.">
+    <meta name="description" content="AI systems for your business. Starting at $1,000.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Open Graph -->
     <meta property="og:title" content="House Call — Sam Rahim">
-    <meta property="og:description" content="AI systems for your business. Built in a day. $1,500.">
+    <meta property="og:description" content="AI systems for your business. Starting at $1,000.">
     <meta property="og:image" content="og-image.png">
     <meta property="og:type" content="website">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="House Call — Sam Rahim">
-    <meta name="twitter:description" content="AI systems for your business. Built in a day. $1,500.">
+    <meta name="twitter:description" content="AI systems for your business. Starting at $1,000.">
     <meta name="twitter:image" content="og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -402,6 +402,41 @@
             color: rgba(250, 247, 242, 0.5);
             margin-bottom: 28px;
         }
+        .pricing-tiers {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .pricing-tier {
+            background: rgba(250, 247, 242, 0.05);
+            border: 1px solid rgba(250, 247, 242, 0.1);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .tier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .tier-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ivory);
+        }
+        .tier-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            color: var(--brass-light);
+        }
+        .pricing-tier p {
+            font-size: 14px;
+            color: rgba(250, 247, 242, 0.6);
+            margin: 0;
+            line-height: 1.5;
+        }
         .pricing-card .includes { list-style: none; padding: 0; }
         .pricing-card .includes li {
             padding: 10px 0;
@@ -615,6 +650,10 @@
             .pricing-card h3 { font-size: 22px; }
             .pricing-card .price { font-size: 40px; }
             .pricing-card .includes li { font-size: 15px; padding: 10px 0; }
+            .pricing-tier { padding: 14px 16px; }
+            .tier-name { font-size: 15px; }
+            .tier-price { font-size: 18px; }
+            .pricing-tier p { font-size: 13px; }
             .pricing-cta .btn-primary { width: 100%; }
             .pricing-cta .btn-ghost { display: block; text-align: center; padding: 12px; }
             .about-flex { flex-direction: column; gap: 16px; }
@@ -682,7 +721,7 @@
                     Get Started
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
-                <span class="btn-note">$1,500. One day. Working systems when I leave.</span>
+                <span class="btn-note">Starting at $1,000. Working systems when I leave.</span>
             </div>
         </section>
 
@@ -772,16 +811,26 @@
 
             <div class="pricing-card">
                 <h3>The House Call</h3>
-                <div class="price">$1,500</div>
-                <div class="price-note">One day, in person or virtual</div>
-                <ul class="includes">
-                    <li>30-minute discovery call beforehand</li>
-                    <li>AI briefing tailored to your industry</li>
-                    <li>Full workflow diagnosis</li>
-                    <li>2–3 custom systems, built and working</li>
-                    <li>Hands-on training so you can run it yourself</li>
-                    <li>Written guide for reference</li>
-                </ul>
+                <div class="price">Starting at $1,000</div>
+                <div class="price-note">In person or virtual</div>
+
+                <div class="pricing-tiers">
+                    <div class="pricing-tier">
+                        <div class="tier-header">
+                            <span class="tier-name">Half Day</span>
+                            <span class="tier-price">$1,000</span>
+                        </div>
+                        <p>AI briefing + diagnosis + 1–2 custom systems built</p>
+                    </div>
+                    <div class="pricing-tier">
+                        <div class="tier-header">
+                            <span class="tier-name">Full Day</span>
+                            <span class="tier-price">$1,500</span>
+                        </div>
+                        <p>Everything above + deeper implementation, 2–3 systems, full training + written guide</p>
+                    </div>
+                </div>
+
                 <div class="pricing-ongoing">
                     <p>If you want ongoing support after, that starts at <span>$300/month</span>. Totally optional.</p>
                 </div>
