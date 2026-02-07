@@ -2,48 +2,35 @@
   <!-- Background -->
   <rect width="1200" height="630" fill="#FAF7F2"/>
 
-  <!-- Subtle texture overlay -->
+  <!-- Subtle texture -->
   <defs>
     <pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse">
       <circle cx="10" cy="10" r="0.5" fill="#3B2F2A" opacity="0.03"/>
-      <circle cx="30" cy="25" r="0.4" fill="#3B2F2A" opacity="0.02"/>
-      <circle cx="50" cy="15" r="0.5" fill="#3B2F2A" opacity="0.03"/>
-      <circle cx="70" cy="35" r="0.3" fill="#3B2F2A" opacity="0.02"/>
-      <circle cx="90" cy="20" r="0.4" fill="#3B2F2A" opacity="0.03"/>
-      <circle cx="20" cy="50" r="0.4" fill="#3B2F2A" opacity="0.02"/>
-      <circle cx="40" cy="70" r="0.5" fill="#3B2F2A" opacity="0.03"/>
-      <circle cx="60" cy="55" r="0.3" fill="#3B2F2A" opacity="0.02"/>
-      <circle cx="80" cy="75" r="0.5" fill="#3B2F2A" opacity="0.03"/>
-      <circle cx="15" cy="85" r="0.4" fill="#3B2F2A" opacity="0.02"/>
+      <circle cx="30" cy="45" r="0.4" fill="#3B2F2A" opacity="0.02"/>
+      <circle cx="60" cy="20" r="0.5" fill="#3B2F2A" opacity="0.03"/>
+      <circle cx="80" cy="60" r="0.3" fill="#3B2F2A" opacity="0.02"/>
+      <circle cx="45" cy="80" r="0.4" fill="#3B2F2A" opacity="0.03"/>
     </pattern>
   </defs>
   <rect width="1200" height="630" fill="url(#grain)"/>
 
-  <!-- Doctor's Bag Icon - Minimal/Stylized -->
-  <g transform="translate(340, 200)">
-    <!-- Bag body -->
-    <rect x="0" y="60" width="160" height="110" rx="12" fill="#2D4A3E"/>
-    <!-- Bag top curve -->
-    <path d="M10 60 Q10 30 40 30 L120 30 Q150 30 150 60" stroke="#2D4A3E" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <!-- Handle -->
-    <path d="M55 30 Q55 0 80 0 Q105 0 105 30" stroke="#2D4A3E" stroke-width="10" fill="none" stroke-linecap="round"/>
-    <!-- Clasp/Lock detail -->
-    <rect x="65" y="50" width="30" height="20" rx="4" fill="#B8963E"/>
-    <!-- Cross symbol -->
-    <rect x="72" y="95" width="16" height="40" rx="2" fill="#FAF7F2"/>
-    <rect x="60" y="107" width="40" height="16" rx="2" fill="#FAF7F2"/>
-  </g>
+  <!-- Accent line top -->
+  <rect x="100" y="100" width="60" height="4" fill="#2D4A3E"/>
 
-  <!-- Text: House Call -->
-  <text x="540" y="290" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="400" fill="#3B2F2A" font-style="italic">House Call</text>
+  <!-- Main headline -->
+  <text x="100" y="220" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-weight="400" fill="#3B2F2A" font-style="italic">House Call</text>
 
-  <!-- Tagline -->
-  <text x="540" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#5C4B44">AI systems for your business. Built in a day.</text>
+  <!-- Subheadline -->
+  <text x="100" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#5C4B44">AI systems for your business.</text>
+  <text x="100" y="350" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#5C4B44">Built in a day.</text>
+
+  <!-- Price anchor -->
+  <text x="100" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#2D4A3E" font-weight="500">Starting at $1,000</text>
 
   <!-- Bottom accent line -->
-  <rect x="100" y="530" width="1000" height="2" fill="#2D4A3E" opacity="0.15"/>
+  <rect x="100" y="530" width="1000" height="1" fill="#3B2F2A" opacity="0.1"/>
 
   <!-- SR Studio mark -->
-  <text x="100" y="580" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#7A6D66">An SR Studio company</text>
+  <text x="100" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#7A6D66">An SR Studio company</text>
 
 </svg>
