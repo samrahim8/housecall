@@ -14,6 +14,24 @@
   </defs>
   <rect width="1200" height="630" fill="url(#grain)"/>
 
+  <!-- Briefcase icon - right side -->
+  <g transform="translate(880, 180)">
+    <!-- Icon background circle -->
+    <rect width="200" height="200" rx="24" fill="#2D4A3E"/>
+
+    <!-- Briefcase body -->
+    <rect x="25" y="85" width="150" height="90" rx="12" fill="#FAF7F2"/>
+
+    <!-- Handle -->
+    <path d="M65 85V70C65 58 75 50 88 50H112C125 50 135 58 135 70V85" stroke="#FAF7F2" stroke-width="14" stroke-linecap="round" fill="none"/>
+
+    <!-- Center clasp -->
+    <rect x="85" y="105" width="30" height="50" rx="6" fill="#2D4A3E"/>
+
+    <!-- Clasp line -->
+    <line x1="85" y1="130" x2="115" y2="130" stroke="#FAF7F2" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
   <!-- Accent line top -->
   <rect x="100" y="100" width="60" height="4" fill="#2D4A3E"/>
 
