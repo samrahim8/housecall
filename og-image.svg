@@ -15,8 +15,8 @@
   <rect width="1200" height="630" fill="url(#grain)"/>
 
   <!-- Briefcase icon - right side -->
-  <g transform="translate(880, 180)">
-    <!-- Icon background circle -->
+  <g transform="translate(880, 200)">
+    <!-- Icon background -->
     <rect width="200" height="200" rx="24" fill="#2D4A3E"/>
 
     <!-- Briefcase body -->
@@ -33,22 +33,15 @@
   </g>
 
   <!-- Accent line top -->
-  <rect x="100" y="100" width="60" height="4" fill="#2D4A3E"/>
+  <rect x="100" y="140" width="60" height="4" fill="#2D4A3E"/>
 
   <!-- Main headline -->
-  <text x="100" y="220" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-weight="400" fill="#3B2F2A" font-style="italic">House Call</text>
+  <text x="100" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-weight="400" fill="#3B2F2A" font-style="italic">House Call</text>
 
   <!-- Subheadline -->
-  <text x="100" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#5C4B44">AI systems for your business.</text>
-  <text x="100" y="350" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#5C4B44">Built in a day.</text>
+  <text x="100" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#5C4B44">One-day AI training and implementation.</text>
 
   <!-- Price anchor -->
-  <text x="100" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#2D4A3E" font-weight="500">Starting at $1,000</text>
-
-  <!-- Bottom accent line -->
-  <rect x="100" y="530" width="1000" height="1" fill="#3B2F2A" opacity="0.1"/>
-
-  <!-- SR Studio mark -->
-  <text x="100" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#7A6D66">A Field Work company</text>
+  <text x="100" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#2D4A3E" font-weight="500">Starting at $1,000</text>
 
 </svg>
