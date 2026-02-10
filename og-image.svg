@@ -49,6 +49,6 @@
   <rect x="100" y="530" width="1000" height="1" fill="#3B2F2A" opacity="0.1"/>
 
   <!-- SR Studio mark -->
-  <text x="100" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#7A6D66">An SR Studio company</text>
+  <text x="100" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#7A6D66">A Field Work company</text>
 
 </svg>
