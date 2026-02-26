@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Call — One-day AI training and implementation</title>
-    <meta name="description" content="One-day AI training and implementation for your business. I'll teach you the landscape, learn your workflows, and build systems that actually work. Starting at $1,000.">
+    <title>House Call — AI training, coaching + product development</title>
+    <meta name="description" content="I use AI to run my own businesses every day. I'll teach your team, coach you personally, or build your product from scratch — depending on what you need.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="House Call — One-day AI training and implementation">
-    <meta property="og:description" content="One-day AI training and implementation for your business. I'll teach you the landscape, learn your workflows, and build systems that actually work. Starting at $1,000.">
+    <meta property="og:title" content="House Call — AI training, coaching + product development">
+    <meta property="og:description" content="I use AI to run my own businesses every day. I'll teach your team, coach you personally, or build your product from scratch — depending on what you need.">
     <meta property="og:image" content="og-image.svg">
     <meta property="og:type" content="website">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="House Call — One-day AI training and implementation">
-    <meta name="twitter:description" content="One-day AI training and implementation for your business. I'll teach you the landscape, learn your workflows, and build systems that actually work. Starting at $1,000.">
+    <meta name="twitter:title" content="House Call — AI training, coaching + product development">
+    <meta name="twitter:description" content="I use AI to run my own businesses every day. I'll teach your team, coach you personally, or build your product from scratch — depending on what you need.">
     <meta name="twitter:image" content="og-image.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -205,6 +205,8 @@
             text-decoration: none;
             transition: all 0.3s ease;
             letter-spacing: 0.01em;
+            border: none;
+            cursor: pointer;
         }
         .btn-primary:hover {
             background: var(--forest-light);
@@ -269,6 +271,12 @@
             margin-bottom: 24px;
         }
 
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--walnut-mid);
+            margin-bottom: 32px;
+        }
+
         p { color: var(--walnut-mid); margin-bottom: 20px; }
         p:last-child { margin-bottom: 0; }
         p em { color: var(--walnut); font-style: italic; }
@@ -314,27 +322,119 @@
             margin: 0;
         }
 
-        /* ——— PULL QUOTE ——— */
-        .pull-quote {
-            margin: 48px 0;
-            padding: 36px;
+        /* ——— OFFER CARDS ——— */
+        .offers { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+
+        .offer-card {
             background: var(--cream);
-            border-radius: 8px;
-            border-left: 3px solid var(--brass);
+            border-radius: 10px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+            position: relative;
         }
-        .pull-quote blockquote {
+        .offer-card:hover {
+            border-color: var(--border-dark);
+            transform: translateY(-2px);
+        }
+        .offer-card.featured {
+            border: 2px solid var(--forest);
+            background: linear-gradient(to bottom, var(--cream), var(--ivory));
+        }
+        .offer-badge {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--forest);
+            color: var(--ivory);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 4px;
+        }
+        .offer-audience {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brass);
+            margin-bottom: 12px;
+        }
+        .offer-card h3 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(20px, 2.5vw, 26px);
-            line-height: 1.45;
+            font-size: 26px;
+            font-weight: 400;
             color: var(--walnut);
-            font-style: italic;
+            margin-bottom: 16px;
         }
-        .pull-quote .attr {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 13px;
-            font-style: normal;
-            color: var(--walnut-light);
-            margin-top: 16px;
+        .offer-card > p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--walnut-mid);
+            margin-bottom: 24px;
+        }
+        .offer-details {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+        .offer-details li {
+            font-size: 14px;
+            color: var(--walnut-mid);
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .offer-details li::before {
+            content: '—';
+            color: var(--brass);
+            flex-shrink: 0;
+        }
+        .offer-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            color: var(--forest);
+        }
+
+        /* ——— RETAINER CARDS ——— */
+        .retainer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .retainer-card {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            transition: border-color 0.25s ease;
+        }
+        .retainer-card:hover {
+            border-color: var(--border-dark);
+        }
+        .retainer-card h4 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--walnut);
+            margin-bottom: 10px;
+        }
+        .retainer-card p {
+            font-size: 14px;
+            color: var(--walnut-mid);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .retainer-card .price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 22px;
+            color: var(--forest);
         }
 
         /* ——— WHO GRID ——— */
@@ -363,126 +463,6 @@
             margin-bottom: 6px;
             font-size: 20px;
         }
-
-        /* ——— PRICING ——— */
-        .pricing-card {
-            background: var(--walnut);
-            color: var(--ivory);
-            border-radius: 10px;
-            padding: 48px;
-            margin-top: 28px;
-            position: relative;
-            overflow: hidden;
-        }
-        /* Warm brass glow */
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(184, 150, 62, 0.12) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .pricing-card h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 26px;
-            font-weight: 400;
-            color: var(--ivory);
-            margin-bottom: 12px;
-        }
-        .pricing-card .price {
-            font-family: 'Instrument Serif', serif;
-            font-size: 56px;
-            color: var(--brass-light);
-            line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
-        }
-        .pricing-card .price-note {
-            font-size: 14px;
-            color: rgba(250, 247, 242, 0.5);
-            margin-bottom: 28px;
-        }
-        .pricing-tiers {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .pricing-tier {
-            background: rgba(250, 247, 242, 0.05);
-            border: 1px solid rgba(250, 247, 242, 0.1);
-            border-radius: 8px;
-            padding: 16px 20px;
-        }
-        .tier-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .tier-name {
-            font-family: 'Source Serif 4', serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--ivory);
-        }
-        .tier-price {
-            font-family: 'Instrument Serif', serif;
-            font-size: 20px;
-            color: var(--brass-light);
-        }
-        .pricing-tier p {
-            font-size: 14px;
-            color: rgba(250, 247, 242, 0.6);
-            margin: 0;
-            line-height: 1.5;
-        }
-        .pricing-card .includes { list-style: none; padding: 0; }
-        .pricing-card .includes li {
-            padding: 10px 0;
-            border-top: 1px solid rgba(250, 247, 242, 0.1);
-            font-size: 15px;
-            color: rgba(250, 247, 242, 0.8);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .pricing-card .includes li::before {
-            content: '—';
-            color: var(--brass-light);
-            flex-shrink: 0;
-        }
-        .pricing-ongoing {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(250, 247, 242, 0.1);
-        }
-        .pricing-ongoing p {
-            font-size: 14px;
-            color: rgba(250, 247, 242, 0.5);
-            margin: 0;
-        }
-        .pricing-ongoing span { color: var(--brass-light); font-weight: 500; }
-
-        .pricing-cta { margin-top: 32px; position: relative; z-index: 1; }
-        .pricing-cta .btn-primary {
-            background: var(--brass);
-            color: var(--walnut);
-        }
-        .pricing-cta .btn-primary:hover {
-            background: var(--brass-light);
-            box-shadow: 0 10px 28px rgba(184, 150, 62, 0.3);
-        }
-        .pricing-cta .btn-note { color: rgba(250, 247, 242, 0.4); }
-        .pricing-cta .btn-ghost {
-            color: rgba(250, 247, 242, 0.5);
-            margin-top: 16px;
-            font-size: 14px;
-        }
-        .pricing-cta .btn-ghost:hover { color: rgba(250, 247, 242, 0.7); }
 
         /* ——— ABOUT ——— */
         .about-flex {
@@ -529,89 +509,54 @@
             white-space: nowrap;
         }
 
-        /* ——— MODAL ——— */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(59, 47, 42, 0.8);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal {
-            background: var(--ivory);
+        /* ——— FINAL CTA ——— */
+        .final-cta {
+            background: var(--walnut);
+            color: var(--ivory);
             border-radius: 10px;
-            padding: 40px;
-            max-width: 420px;
-            width: 90%;
+            padding: 48px;
+            margin-top: 32px;
+            text-align: center;
             position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            overflow: hidden;
         }
-        .modal-overlay.active .modal {
-            transform: translateY(0);
-        }
-        .modal-close {
+        .final-cta::before {
+            content: '';
             position: absolute;
-            top: 16px; right: 16px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--walnut-light);
-            cursor: pointer;
-            transition: color 0.2s ease;
+            top: -30%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(184, 150, 62, 0.12) 0%, transparent 60%);
+            pointer-events: none;
         }
-        .modal-close:hover { color: var(--walnut); }
-        .modal h3 {
+        .final-cta h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: 26px;
+            font-size: 32px;
+            color: var(--ivory);
+            margin-bottom: 16px;
+        }
+        .final-cta p {
+            font-size: 17px;
+            color: rgba(250, 247, 242, 0.7);
+            margin-bottom: 28px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .final-cta .btn-primary {
+            background: var(--brass);
             color: var(--walnut);
-            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
-        .modal p {
-            font-size: 15px;
-            color: var(--walnut-mid);
-            margin-bottom: 24px;
+        .final-cta .btn-primary:hover {
+            background: var(--brass-light);
+            box-shadow: 0 10px 28px rgba(184, 150, 62, 0.3);
         }
-        .modal-form input,
-        .modal-form textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 15px;
-            color: var(--walnut);
-            background: var(--cream);
-            margin-bottom: 12px;
-            transition: border-color 0.2s ease;
-        }
-        .modal-form input:focus,
-        .modal-form textarea:focus {
-            outline: none;
-            border-color: var(--forest);
-        }
-        .modal-form input::placeholder,
-        .modal-form textarea::placeholder {
-            color: var(--walnut-light);
-        }
-        .modal-form textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        .modal-form .btn-primary {
-            width: 100%;
-            justify-content: center;
-            margin-top: 8px;
+        .final-cta .btn-note {
+            color: rgba(250, 247, 242, 0.4);
+            text-align: center;
         }
 
         /* ——— FOOTER ——— */
@@ -620,7 +565,8 @@
             border-top: 1px solid var(--border);
             text-align: center;
         }
-        footer p { font-size: 13px; color: var(--walnut-light); }
+        footer p { font-size: 13px; color: var(--walnut-light); margin-bottom: 8px; }
+        footer p:last-child { margin-bottom: 0; }
         footer a { color: var(--walnut); text-decoration: none; }
         footer a:hover { color: var(--forest); }
 
@@ -636,7 +582,7 @@
         @media (max-width: 640px) {
             body { font-size: 16px; }
             nav { padding: 12px 20px; }
-            .nav-cta { padding: 12px 20px; font-size: 13px; } /* Larger touch target */
+            .nav-cta { padding: 12px 20px; font-size: 13px; }
             .nav-mark { font-size: 20px; }
             .container { padding: 0 20px; }
             .hero { padding: 100px 0 48px; }
@@ -650,16 +596,11 @@
             .for-grid { grid-template-columns: 1fr; gap: 12px; }
             .for-item { padding: 20px 24px; }
             .for-item strong { font-size: 18px; }
-            .pricing-card { padding: 28px 20px; border-radius: 8px; }
-            .pricing-card h3 { font-size: 22px; }
-            .pricing-card .price { font-size: 40px; }
-            .pricing-card .includes li { font-size: 15px; padding: 10px 0; }
-            .pricing-tier { padding: 14px 16px; }
-            .tier-name { font-size: 15px; }
-            .tier-price { font-size: 18px; }
-            .pricing-tier p { font-size: 13px; }
-            .pricing-cta .btn-primary { width: 100%; }
-            .pricing-cta .btn-ghost { display: block; text-align: center; padding: 12px; }
+            .retainer-grid { grid-template-columns: 1fr; gap: 12px; }
+            .retainer-card { padding: 24px; }
+            .offer-card { padding: 28px 24px; }
+            .offer-card h3 { font-size: 22px; }
+            .offer-badge { left: 20px; }
             .about-flex { flex-direction: column; gap: 16px; }
             .about-marker { width: 56px; height: 56px; min-width: 56px; font-size: 20px; }
             .about-text p { font-size: 16px; }
@@ -668,20 +609,9 @@
             .step h3 { font-size: 20px; }
             .step p { font-size: 15px; }
             .steps { gap: 12px; }
+            .final-cta { padding: 36px 24px; }
+            .final-cta h2 { font-size: 26px; }
             footer p { font-size: 13px; }
-
-            /* Modal mobile */
-            .modal {
-                width: 95%;
-                padding: 28px 20px;
-                max-height: 90vh;
-                overflow-y: auto;
-                margin: 20px;
-            }
-            .modal h3 { font-size: 22px; }
-            .modal-form input,
-            .modal-form textarea { font-size: 16px; padding: 14px; } /* Prevents iOS zoom */
-            .modal-form .btn-primary { padding: 14px 24px; }
         }
 
         /* Small phones */
@@ -689,7 +619,6 @@
             .container { padding: 0 16px; }
             h1 { font-size: 56px; line-height: 1.0; }
             .hero-body { font-size: 17px; }
-            .pricing-card .price { font-size: 36px; }
             .hero { padding: 90px 0 40px; }
         }
 
@@ -710,22 +639,21 @@
 
     <nav id="nav">
         <div class="nav-mark">House Call</div>
-        <a href="#book" class="nav-cta">Book Now</a>
+        <a href="#book" class="nav-cta">Book a call</a>
     </nav>
 
     <main class="container">
 
         <!-- HERO -->
         <section class="hero">
-            <div class="hero-eyebrow animate animate-d1">Now booking in Orlando</div>
+            <div class="hero-eyebrow animate animate-d1">Now booking in Orlando + remote</div>
             <h1 class="animate animate-d2">You already know<br>you should be<br><em>using AI.</em></h1>
-            <p class="hero-body animate animate-d3">I spend a day with you, teach you about the current AI landscape, learn how your business runs, and help you integrate it into your business. A one-on-one house call.</p>
+            <p class="hero-body animate animate-d3">I use AI to run my own businesses every day. I'll teach your team, coach you personally, or build your product from scratch — depending on what you need.</p>
             <div class="animate animate-d4">
-                <a href="#book" class="btn-primary">
-                    Get Started
+                <a href="#how-it-works" class="btn-primary">
+                    See how it works
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
-                <span class="btn-note">Starting at $1,000.</span>
             </div>
         </section>
 
@@ -736,16 +664,17 @@
             <div class="section-label">The situation</div>
             <h2>You've been meaning<br>to figure this out.</h2>
             <p>You've probably tried ChatGPT. Maybe it helped, maybe it felt like a gimmick. Either way, it's not part of how you actually work day-to-day.</p>
-            <p>The problem isn't that you don't get it — it's that you're running a business. You don't have a spare weekend to figure out which tools matter and how to make them stick.</p>
-            <p>I use AI to run my own businesses every day. I'll show you exactly what I use and how I use it.</p>
+            <p>The problem isn't that you don't get it — it's that you're busy. You don't have a spare weekend to figure out which tools matter, which ones are hype, and how to make any of it stick.</p>
+            <p>I've done that work. I use AI to run a portfolio of businesses — content, operations, client work, product development, all of it. I'll show you exactly what I use + how I use it.</p>
         </section>
 
         <hr class="ink-stroke">
 
         <!-- HOW IT WORKS -->
-        <section>
+        <section id="how-it-works">
             <div class="section-label">How it works</div>
-            <h2>One day. Four things.</h2>
+            <h2>One framework.<br>Tailored to you.</h2>
+            <p class="section-subtitle">Every engagement follows the same structure. The depth depends on what you need.</p>
 
             <div class="steps">
                 <div class="step">
@@ -753,28 +682,97 @@
                         <span class="step-num">01</span>
                         <h3>The Intake</h3>
                     </div>
-                    <p>I break down the landscape — what tools exist, what they're actually good at, and what's worth your time. You'll understand the capabilities so you can make your own decisions going forward, not just take my word for it.</p>
+                    <p>I break down the landscape — what tools exist, what they're actually good at, and what's worth your time. You'll understand the capabilities so you can make your own decisions going forward. Not just take my word for it.</p>
                 </div>
                 <div class="step">
                     <div class="step-head">
                         <span class="step-num">02</span>
                         <h3>The Diagnosis</h3>
                     </div>
-                    <p>We walk through your day together. Where's your time going? What's repetitive, what's manual, what's just annoying? I find the 3–5 spots where AI actually helps.</p>
+                    <p>We walk through your day together. Where's your time going? What's repetitive? What's manual? What's just annoying? I find the 3–5 spots where AI actually moves the needle.</p>
                 </div>
                 <div class="step">
                     <div class="step-head">
                         <span class="step-num">03</span>
                         <h3>The Prescription</h3>
                     </div>
-                    <p>I build you the same kinds of systems I use to run my own companies. Content, client communication, operations, research — whatever helps most. Working tools by the end of the day.</p>
+                    <p>I build you the same kinds of systems I use to run my own companies. Content, client communication, operations, research — whatever helps most. Working tools by the end. Not slide decks.</p>
                 </div>
                 <div class="step">
                     <div class="step-head">
                         <span class="step-num">04</span>
-                        <h3>The Handoff</h3>
+                        <h3>The Follow-Up</h3>
                     </div>
-                    <p>I teach you how it all works so you can run it yourself. You get a written guide too, so nothing gets lost after I leave. And when something new comes up — it always does — you know where to find me.</p>
+                    <p>AI moves fast. New tools ship weekly. I keep you current + make sure everything sticks — whether that's a one-time handoff or an ongoing relationship.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="ink-stroke">
+
+        <!-- WHAT I OFFER -->
+        <section>
+            <div class="section-label">What I offer</div>
+            <h2>Three ways to<br>work together.</h2>
+
+            <div class="offers">
+                <div class="offer-card featured">
+                    <div class="offer-badge">Most popular</div>
+                    <div class="offer-audience">For businesses + teams</div>
+                    <h3>The Team Workshop</h3>
+                    <p>I come to your office + spend a day with your team. By the end of it, everyone knows how to use AI in their actual workflows — not in theory, in practice. Your team walks out faster, sharper, and less dependent on you for the stuff AI can handle.</p>
+                    <ul class="offer-details">
+                        <li>Format: Full day, on-site in Orlando (or virtual)</li>
+                        <li>Team size: 3–20 people</li>
+                        <li>Includes: Custom curriculum, hands-on implementation, written guide</li>
+                    </ul>
+                    <div class="offer-price">$3,000–$5,000 depending on team size</div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-audience">For founders, investors + executives</div>
+                    <h3>The Coaching Series</h3>
+                    <p>One-on-one. We meet weekly over Google Meet. I give you homework between sessions. By the end of four weeks, you'll be operating like a different person. Most people stick around after.</p>
+                    <ul class="offer-details">
+                        <li>Format: 4 sessions over 4 weeks, via Google Meet</li>
+                        <li>Sessions: 60–90 minutes each</li>
+                        <li>Includes: Custom homework, direct access between sessions</li>
+                    </ul>
+                    <div class="offer-price">$2,500 for the 4-week starter</div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-audience">For people sitting on ideas</div>
+                    <h3>The Build</h3>
+                    <p>You've got a product idea. I'll build it. I use AI to ship in days what used to take weeks. You get a working product — not a pitch deck. We'll structure it with a build fee upfront + rev share so we're both invested.</p>
+                    <ul class="offer-details">
+                        <li>Format: Project-based</li>
+                        <li>Timeline: Days to weeks, not months</li>
+                        <li>Includes: A working product, not a prototype</li>
+                    </ul>
+                    <div class="offer-price">Starting at $2,000–$3,000+ build fee + rev share</div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="ink-stroke">
+
+        <!-- RETAINERS -->
+        <section>
+            <div class="section-label">Keep going</div>
+            <h2>Most people<br>stick around.</h2>
+            <p>AI moves fast. New tools come out weekly. Having someone who already knows your business + can implement on the fly — that's the real value. After any engagement, you can move to a retainer.</p>
+
+            <div class="retainer-grid">
+                <div class="retainer-card">
+                    <h4>Weekly</h4>
+                    <p>One session per week + homework + direct access to me.</p>
+                    <div class="price">$2,000/mo</div>
+                </div>
+                <div class="retainer-card">
+                    <h4>Bi-weekly</h4>
+                    <p>Two sessions per month + homework + direct access to me.</p>
+                    <div class="price">$1,200/mo</div>
                 </div>
             </div>
         </section>
@@ -784,78 +782,29 @@
         <!-- WHO THIS IS FOR -->
         <section>
             <div class="section-label">Who this is for</div>
-            <h2>Busy people who don't have<br>the time to keep up.</h2>
+            <h2>Busy people who don't<br>have time to keep up.</h2>
 
             <div class="for-grid">
                 <div class="for-item">
-                    <strong>Real estate pros</strong>
-                    Agents, brokerages, property managers
-                </div>
-                <div class="for-item">
-                    <strong>Practice owners</strong>
-                    Dentists, med spas, physicians
-                </div>
-                <div class="for-item">
-                    <strong>Service businesses</strong>
-                    Agencies, law firms, advisors
-                </div>
-                <div class="for-item">
                     <strong>Business owners</strong>
-                    Entrepreneurs running one or several
+                    Running one company or several. Need your team operating faster.
+                </div>
+                <div class="for-item">
+                    <strong>Agencies + studios</strong>
+                    Marketing, design, dev shops — AI changes everything you deliver.
+                </div>
+                <div class="for-item">
+                    <strong>Founders + investors</strong>
+                    Building something new or evaluating what's next. Need to understand the landscape firsthand.
+                </div>
+                <div class="for-item">
+                    <strong>Operators + execs</strong>
+                    Running teams at growing companies. Want to 10x your personal output.
                 </div>
             </div>
         </section>
 
         <hr class="ink-stroke">
-
-        <!-- PRICING -->
-        <section id="book">
-            <div class="section-label">Investment</div>
-            <h2>You already know<br>you need this.</h2>
-
-            <div class="pricing-card">
-                <h3>The House Call</h3>
-                <div class="price">Starting at $1,000</div>
-                <div class="price-note">In person or virtual</div>
-
-                <div class="pricing-tiers">
-                    <div class="pricing-tier">
-                        <div class="tier-header">
-                            <span class="tier-name">Half Day</span>
-                            <span class="tier-price">$1,000</span>
-                        </div>
-                        <p>AI landscape briefing + diagnosis of your workflows + solution roadmap</p>
-                    </div>
-                    <div class="pricing-tier">
-                        <div class="tier-header">
-                            <span class="tier-name">Full Day</span>
-                            <span class="tier-price">$1,500</span>
-                        </div>
-                        <p>Everything above + hands-on implementation, 1–2 custom systems built, training + written guide</p>
-                    </div>
-                </div>
-
-                <div class="pricing-ongoing">
-                    <h4 style="font-family: 'Instrument Serif', serif; font-size: 20px; color: var(--ivory); margin-bottom: 12px; font-weight: 400;">Keep me on retainer</h4>
-                    <p style="margin-bottom: 16px;">Most clients stick around after the house call. New problems come up, tools change, and it helps to have someone who already knows your business.</p>
-                    <p style="margin-bottom: 12px;"><span>$500/month</span> gets you:</p>
-                    <ul class="includes">
-                        <li>Direct access — text, email, whatever works</li>
-                        <li>Ongoing implementation support</li>
-                        <li>Quarterly check-in to see what's working</li>
-                        <li>Heads up when new tools come out that make sense for you</li>
-                    </ul>
-                </div>
-                <div class="pricing-cta">
-                    <a href="#" class="btn-primary">
-                        Book Your House Call
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </a>
-                    <span class="btn-note">You'll fill out a short intake form after booking.</span>
-                    <a href="#" class="btn-ghost" id="questions-link">Questions?</a>
-                </div>
-            </div>
-        </section>
 
         <!-- ABOUT -->
         <section>
@@ -864,10 +813,31 @@
             <div class="about-flex">
                 <div class="about-marker">SR</div>
                 <div class="about-text">
-                    <p>I'm <a href="https://samrahim.com" target="_blank">Sam Rahim</a>. I run Field Work, a portfolio of businesses that use AI every single day to operate. I spend a lot of time in the AI community online, tinkering with new tools as they come out. Everything I'll build for you comes from what I actually use — not what I read about.</p>
-                    <p>I started my career at Disney. Since then, I've worked for several high-growth startups, including Street FC — where I was the first employee, and helped grow the business to millions in revenue.</p>
-                    <p>Based in Orlando.</p>
+                    <p>I run <a href="https://samrahim.com" target="_blank">Field Work</a> — a portfolio of businesses that use AI every single day to operate. Everything I teach + build comes from what I actually use. Not what I read about.</p>
+                    <p>Before this, I was the first employee at Street FC — helped scale the business from 2 to 12 cities, managed 100+ employees, and facilitated over $2M in brand partnerships with Nike, Adidas + EA Sports. I've worked at Disney, Guild Education + Switchyards. Nearly a decade in startups. I know what it takes to build + operate at every stage.</p>
+                    <p>Based in Orlando. Working with people everywhere.</p>
+                    <div class="credentials">
+                        <span class="credential">Disney — Adventures by Disney</span>
+                        <span class="credential">Street FC — First employee, 4 years</span>
+                        <span class="credential">Switchyards — GTM + Partnerships</span>
+                        <span class="credential">Field Work — Founder</span>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <hr class="ink-stroke">
+
+        <!-- FINAL CTA -->
+        <section id="book">
+            <div class="final-cta">
+                <h2>Ready when you are.</h2>
+                <p>Book a 15-minute call. I'll learn what you need, and if it's a fit, we'll get started.</p>
+                <a href="#" class="btn-primary">
+                    Book a Call
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <span class="btn-note">You'll fill out a short intake form after booking.</span>
             </div>
         </section>
 
@@ -875,27 +845,10 @@
 
     </main>
 
-    <!-- Questions Modal -->
-    <div class="modal-overlay" id="questions-modal">
-        <div class="modal">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <h3>Quick question?</h3>
-            <p>Drop your info and I'll get back to you within 24 hours.</p>
-            <form class="modal-form" id="questions-form">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="question" placeholder="What's on your mind?" rows="3" required></textarea>
-                <button type="submit" class="btn-primary">
-                    Send
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </button>
-            </form>
-        </div>
-    </div>
-
     <footer>
         <div class="container">
             <p>House Call. A <a href="https://samrahim.com">Field Work</a> company.</p>
+            <p><a href="mailto:sam@samrahim.com">sam@samrahim.com</a></p>
         </div>
     </footer>
 
@@ -921,7 +874,7 @@
                 });
             }, { threshold: 0.12 });
 
-            document.querySelectorAll('section:not(.hero), .ink-stroke:not(.animate), .pull-quote, .steps .step').forEach(el => {
+            document.querySelectorAll('section:not(.hero), .ink-stroke:not(.animate), .steps .step, .offer-card, .retainer-card, .for-item').forEach(el => {
                 el.style.opacity = '0';
                 observer.observe(el);
             });
@@ -943,36 +896,6 @@
                 strokeObserver.observe(el);
             });
         }
-
-        // Modal
-        const modal = document.getElementById('questions-modal');
-        const questionsLink = document.getElementById('questions-link');
-        const modalClose = document.getElementById('modal-close');
-
-        questionsLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
     </script>
 
     <script defer src="/_vercel/insights/script.js"></script>
