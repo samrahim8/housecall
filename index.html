@@ -664,6 +664,33 @@
             justify-content: center;
             margin-top: 8px;
         }
+        .final-cta-form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 16px;
+            color: var(--walnut);
+            background: var(--ivory);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            resize: vertical;
+            min-height: 80px;
+        }
+        .final-cta-form textarea:focus {
+            outline: none;
+            border-color: var(--brass);
+            box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.15);
+        }
+        .final-cta-form textarea::placeholder {
+            color: var(--walnut-light);
+        }
+        .conditional-field {
+            display: none;
+        }
+        .conditional-field.visible {
+            display: block;
+        }
 
         /* ——— FOOTER ——— */
         footer {
@@ -959,6 +986,29 @@
                             <option value="not-sure">Not sure yet</option>
                         </select>
                     </div>
+                    <div class="form-group conditional-field" id="team-size-field">
+                        <label for="team-size">How many people on your team?</label>
+                        <select id="team-size" name="team-size">
+                            <option value="" disabled selected>Select one</option>
+                            <option value="3-5">3–5</option>
+                            <option value="6-10">6–10</option>
+                            <option value="11-20">11–20</option>
+                            <option value="20+">20+</option>
+                        </select>
+                    </div>
+                    <div class="form-group conditional-field" id="session-tier-field">
+                        <label for="session-tier">Which tier?</label>
+                        <select id="session-tier" name="session-tier">
+                            <option value="" disabled selected>Select one</option>
+                            <option value="founders-execs">Founders + Executives ($2,500)</option>
+                            <option value="individuals">Individuals ($750)</option>
+                            <option value="small-group">Small Group ($250/person)</option>
+                        </select>
+                    </div>
+                    <div class="form-group conditional-field" id="idea-field">
+                        <label for="idea">Tell me about your idea</label>
+                        <textarea id="idea" name="idea" placeholder="What are you thinking?"></textarea>
+                    </div>
                     <button type="submit" class="btn-primary">
                         Get in touch
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1027,6 +1077,27 @@
         const contactForm = document.getElementById('contact-form');
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzplzmCtwpSYYUCI8bsJNvFQ2xlbM6vZwcGmFXB06y56J9NKjwFZIaXBgNOnfxvSzzvJQ/exec';
 
+        // Conditional fields
+        const interestSelect = document.getElementById('interest');
+        const teamSizeField = document.getElementById('team-size-field');
+        const sessionTierField = document.getElementById('session-tier-field');
+        const ideaField = document.getElementById('idea-field');
+
+        interestSelect.addEventListener('change', () => {
+            const value = interestSelect.value;
+            teamSizeField.classList.remove('visible');
+            sessionTierField.classList.remove('visible');
+            ideaField.classList.remove('visible');
+
+            if (value === 'team-workshop') {
+                teamSizeField.classList.add('visible');
+            } else if (value === 'working-sessions') {
+                sessionTierField.classList.add('visible');
+            } else if (value === 'built-for-you') {
+                ideaField.classList.add('visible');
+            }
+        });
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -1034,10 +1105,14 @@
             submitBtn.innerHTML = 'Sending...';
             submitBtn.disabled = true;
 
+            const interest = document.getElementById('interest').value;
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
-                interest: document.getElementById('interest').value,
+                interest: interest,
+                teamSize: interest === 'team-workshop' ? document.getElementById('team-size').value : '',
+                sessionTier: interest === 'working-sessions' ? document.getElementById('session-tier').value : '',
+                idea: interest === 'built-for-you' ? document.getElementById('idea').value : '',
                 timestamp: new Date().toISOString()
             };
 
