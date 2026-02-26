@@ -833,9 +833,10 @@
             body { font-size: 17px; }
             nav {
                 padding: 12px 20px;
+                padding-top: calc(12px + env(safe-area-inset-top));
                 background: var(--ivory);
-                -webkit-transform: translateZ(0);
-                transform: translateZ(0);
+                position: sticky;
+                position: -webkit-sticky;
             }
             .nav-cta { padding: 12px 20px; font-size: 13px; }
             .nav-mark { font-size: 20px; }
