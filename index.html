@@ -47,6 +47,12 @@
         body {
             overscroll-behavior: none;
         }
+        @media (max-width: 640px) {
+            html, body {
+                height: 100%;
+                overflow: hidden;
+            }
+        }
 
         /* Custom text selection */
         ::selection {
@@ -80,6 +86,18 @@
             font-size: 17px;
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scroll wrapper for mobile fixed nav fix */
+        .scroll-wrapper {
+            /* Default: no special behavior on desktop */
+        }
+        @media (max-width: 640px) {
+            .scroll-wrapper {
+                height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
         }
 
         /* Subtle paper texture */
@@ -835,8 +853,6 @@
                 padding: 12px 20px;
                 padding-top: calc(12px + env(safe-area-inset-top));
                 background: var(--ivory);
-                position: sticky;
-                position: -webkit-sticky;
             }
             .nav-cta { padding: 12px 20px; font-size: 13px; }
             .nav-mark { font-size: 20px; }
@@ -930,6 +946,7 @@
         <a href="#book" class="nav-cta">Get started</a>
     </nav>
 
+    <div class="scroll-wrapper" id="scroll-wrapper">
     <main class="container">
 
         <!-- HERO -->
@@ -1182,20 +1199,33 @@
             <p><a href="mailto:sam@samrahim.com">sam@samrahim.com</a></p>
         </div>
     </footer>
+    </div>
 
     <script>
         // Nav scroll + progress bar
         const nav = document.getElementById('nav');
         const scrollProgress = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 20);
+        const scrollWrapper = document.getElementById('scroll-wrapper');
+
+        // Use scroll wrapper on mobile, window on desktop
+        const scrollTarget = window.innerWidth <= 640 ? scrollWrapper : window;
+        const getScrollTop = () => window.innerWidth <= 640 ? scrollWrapper.scrollTop : window.scrollY;
+        const getDocHeight = () => window.innerWidth <= 640
+            ? scrollWrapper.scrollHeight - scrollWrapper.clientHeight
+            : document.documentElement.scrollHeight - window.innerHeight;
+
+        const handleScroll = () => {
+            const scrollTop = getScrollTop();
+            nav.classList.toggle('scrolled', scrollTop > 20);
 
             // Update scroll progress
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const docHeight = getDocHeight();
             const progress = (scrollTop / docHeight) * 100;
             scrollProgress.style.width = progress + '%';
-        });
+        };
+
+        scrollWrapper.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
 
         // Check if user prefers reduced motion
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
