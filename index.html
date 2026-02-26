@@ -1098,12 +1098,8 @@
             }
         });
 
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = 'Sending...';
-            submitBtn.disabled = true;
 
             const interest = document.getElementById('interest').value;
             const formData = {
@@ -1116,31 +1112,20 @@
                 timestamp: new Date().toISOString()
             };
 
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
+            // Send in background
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
 
-                // Show success state
-                submitBtn.innerHTML = 'Sent ✓';
-                submitBtn.style.background = 'var(--forest)';
-                contactForm.reset();
-
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                }, 3000);
-            } catch (error) {
-                submitBtn.innerHTML = 'Error - try again';
-                submitBtn.disabled = false;
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                }, 3000);
-            }
+            // Instantly show confirmation
+            const ctaBox = document.querySelector('.final-cta');
+            ctaBox.innerHTML = `
+                <h2>Got it.</h2>
+                <p>I'll be in touch soon. Talk soon.</p>
+            `;
         });
     </script>
 
