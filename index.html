@@ -832,7 +832,7 @@
                         <li>Team size: 3–20 people</li>
                         <li>Includes: Custom curriculum, hands-on implementation, written guide</li>
                     </ul>
-                    <div class="offer-price">$3,000–$5,000 depending on team size</div>
+                    <div class="offer-price">Starting at $3,000</div>
                     <a href="#book" class="offer-cta">Book a call →</a>
                 </div>
 
@@ -875,7 +875,7 @@
                         <li>Timeline: Days to weeks, not months</li>
                         <li>Includes: A working product, not a prototype</li>
                     </ul>
-                    <div class="offer-price">Starting at $2,000–$3,000+ build fee + rev share</div>
+                    <div class="offer-price">Starting at $2,000 + rev share</div>
                     <a href="#book" class="offer-cta">Book a call →</a>
                 </div>
             </div>
@@ -1025,20 +1025,47 @@
 
         // Contact form handler
         const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const interest = document.getElementById('interest').value;
-            const interestLabels = {
-                'team-workshop': 'The Team Workshop',
-                'working-sessions': 'The Working Sessions',
-                'built-for-you': 'Built for You',
-                'not-sure': 'Not sure yet'
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                interest: document.getElementById('interest').value,
+                timestamp: new Date().toISOString()
             };
-            const subject = encodeURIComponent(`House Call inquiry: ${interestLabels[interest]}`);
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInterested in: ${interestLabels[interest]}`);
-            window.location.href = `mailto:sam@samrahim.com?subject=${subject}&body=${body}`;
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show success state
+                submitBtn.innerHTML = 'Sent ✓';
+                submitBtn.style.background = 'var(--forest)';
+                contactForm.reset();
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            } catch (error) {
+                submitBtn.innerHTML = 'Error - try again';
+                submitBtn.disabled = false;
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                }, 3000);
+            }
         });
     </script>
 
