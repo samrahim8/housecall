@@ -429,6 +429,13 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 16px 20px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+        }
+        .offer-tier:hover {
+            transform: translateY(-3px);
+            border-color: var(--forest);
+            box-shadow: 0 8px 24px rgba(45, 74, 62, 0.12);
         }
         .offer-tier .tier-header {
             display: flex;
