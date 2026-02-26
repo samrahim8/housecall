@@ -401,6 +401,45 @@
             color: var(--forest);
         }
 
+        /* ——— OFFER TIERS ——— */
+        .offer-tiers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+        .offer-tier {
+            background: rgba(250, 247, 242, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+        .offer-tier .tier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .offer-tier .tier-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--walnut);
+        }
+        .offer-tier .tier-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            color: var(--forest);
+        }
+        .offer-tier p {
+            font-size: 14px;
+            color: var(--walnut-mid);
+            margin: 0;
+            line-height: 1.5;
+        }
+
         /* ——— RETAINER CARDS ——— */
         .retainer-grid {
             display: grid;
@@ -730,15 +769,32 @@
                 </div>
 
                 <div class="offer-card">
-                    <div class="offer-audience">For founders, investors + executives</div>
+                    <div class="offer-audience">For founders, investors, executives + ambitious professionals</div>
                     <h3>The Coaching Series</h3>
-                    <p>One-on-one. We meet weekly over Google Meet. I give you homework between sessions. By the end of four weeks, you'll be operating like a different person. Most people stick around after.</p>
-                    <ul class="offer-details">
-                        <li>Format: 4 sessions over 4 weeks, via Google Meet</li>
-                        <li>Sessions: 60–90 minutes each</li>
-                        <li>Includes: Custom homework, direct access between sessions</li>
-                    </ul>
-                    <div class="offer-price">$2,500 for the 4-week starter</div>
+                    <p>One-on-one (or small group). We meet regularly over Google Meet. I give you homework between sessions. Whether you're running a fund or running a department — by the end, you'll be operating like a different person. Most people stick around after.</p>
+                    <div class="offer-tiers">
+                        <div class="offer-tier">
+                            <div class="tier-header">
+                                <span class="tier-name">Founders, Investors + Executives</span>
+                                <span class="tier-price">$2,500</span>
+                            </div>
+                            <p>4 sessions over 4 weeks. 1 hour each. Custom homework + direct access between sessions.</p>
+                        </div>
+                        <div class="offer-tier">
+                            <div class="tier-header">
+                                <span class="tier-name">Individuals</span>
+                                <span class="tier-price">$750</span>
+                            </div>
+                            <p>3 sessions over 3 weeks. 1 hour each. Homework between sessions.</p>
+                        </div>
+                        <div class="offer-tier">
+                            <div class="tier-header">
+                                <span class="tier-name">Small Group (up to 3 people)</span>
+                                <span class="tier-price">$250/person</span>
+                            </div>
+                            <p>3 sessions over 3 weeks. 1 hour each. Homework between sessions.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="offer-card">
@@ -800,6 +856,10 @@
                 <div class="for-item">
                     <strong>Operators + execs</strong>
                     Running teams at growing companies. Want to 10x your personal output.
+                </div>
+                <div class="for-item">
+                    <strong>Ambitious professionals</strong>
+                    Mid-career, want to get ahead with AI — whether that's at your current job, a side project, or your next move.
                 </div>
             </div>
         </section>
