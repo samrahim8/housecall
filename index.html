@@ -42,6 +42,31 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        /* Custom text selection */
+        ::selection {
+            background: var(--brass);
+            color: var(--walnut);
+        }
+        ::-moz-selection {
+            background: var(--brass);
+            color: var(--walnut);
+        }
+
+        /* Custom scrollbar (webkit) */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-dark);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--walnut-light);
+        }
+
         body {
             font-family: 'Source Serif 4', Georgia, serif;
             color: var(--walnut);
@@ -104,6 +129,11 @@
             color: var(--walnut);
             text-transform: uppercase;
             letter-spacing: 0.08em;
+            transition: color 0.25s ease;
+            cursor: default;
+        }
+        .nav-mark:hover {
+            color: var(--forest);
         }
         .nav-cta {
             font-family: 'Source Serif 4', Georgia, serif;
@@ -537,15 +567,32 @@
             min-width: 80px;
             border-radius: 10px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .about-photo:hover {
+            transform: scale(1.05);
         }
         .about-text p { font-size: 16px; }
         .about-text a {
             color: var(--forest);
-            text-decoration: underline;
-            text-underline-offset: 2px;
+            text-decoration: none;
+            position: relative;
             transition: color 0.2s ease;
         }
+        .about-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--forest);
+            transition: width 0.3s ease;
+        }
         .about-text a:hover { color: var(--forest-light); }
+        .about-text a:hover::after {
+            width: 100%;
+        }
 
         .credentials {
             display: flex;
