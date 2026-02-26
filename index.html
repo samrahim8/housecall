@@ -605,6 +605,35 @@
             color: rgba(250, 247, 242, 0.4);
             text-align: center;
         }
+        .final-cta.confirmed {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+        .confirmation-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--brass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--walnut);
+            animation: scaleIn 0.3s ease;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .final-cta.confirmed h2 {
+            animation: fadeUp 0.4s ease 0.15s both;
+        }
+        .final-cta.confirmed p {
+            animation: fadeUp 0.4s ease 0.25s both;
+        }
 
         /* ——— FINAL CTA FORM ——— */
         .final-cta-form {
@@ -1117,9 +1146,15 @@
             // Instantly show confirmation
             const ctaBox = document.querySelector('.final-cta');
             ctaBox.innerHTML = `
+                <div class="confirmation-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
                 <h2>Got it!</h2>
                 <p>I'll be in touch soon.</p>
             `;
+            ctaBox.classList.add('confirmed');
         });
     </script>
 
